@@ -30,8 +30,8 @@ var Img = createReactClass({
     var width = this.props.width || 'auto';
     var height = this.props.height || 'auto';
     var style = {
-      'width': width + 'px',
-      'height': height + 'px',
+      width: width + 'px',
+      height: height + 'px',
     };
     return (
       <Link href={this.props.src}><img src={this.props.src} style={style} /></Link>
@@ -42,8 +42,8 @@ var Img = createReactClass({
 var H1 = createReactClass({
   render: function() {
     var style = {
-      'font-size': '18px',
-      'font-weight': 'bold',
+      fontSize: '18px',
+      fontWeight: 'bold',
     };
     return (
       <span style={style}>{this.props.children}</span>
@@ -54,8 +54,8 @@ var H1 = createReactClass({
 var H2 = createReactClass({
   render: function() {
     var style = {
-      'font-size': '26px',
-      'font-weight': 'bold',
+      fontSize: '26px',
+      fontWeight: 'bold',
     };
     return (
       <span style={style}>{this.props.children}</span>
