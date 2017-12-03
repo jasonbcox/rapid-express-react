@@ -23,11 +23,12 @@ var fetchContent = function(staticDir, appPath) {
       if (fs.existsSync(staticDir + filename + '.js')) {
         // Render the page from JSX and provide the initial state for rehydration
         var pageData = require(staticDir + filename);
-        var initialState = {content: ReactDOMServer.renderToString(pageData.content)};
+        var pageContent = pageData.content;
+        var initialState = {content: ReactDOMServer.renderToString(pageContent)};
         response.render(pagePartial, {
           title: pageData.title,
           description: pageData.description,
-          content: initApp(initialState),
+          content: initApp(pageContent),
           initialState: JSON.stringify(initialState),
         });
       } else {

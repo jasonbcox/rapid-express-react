@@ -5,7 +5,7 @@
     "type": "git",
     "url": "https://github.com/jasonbcox/rapid-express-react.git"
   },
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "dependencies": {
     "express": "4.x",
@@ -20,6 +20,7 @@
     "mustache-express": "*",
     "react": "16.x",
     "react-dom": "16.x",
+    "react-html-parser": "2.x",
     "create-react-class": "15.x",
     "babel-register": "6.x",
     "babel-plugin-transform-runtime": "6.x"

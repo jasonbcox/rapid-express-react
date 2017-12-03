@@ -5,7 +5,7 @@ var ReactDOMServer = require('react-dom/server');
 module.exports = function(appPath) {
   var App = require(appPath);
 
-  return function(initialState) {
-    return ReactDOMServer.renderToString(<App initialState={initialState} />);
+  return function(content) {
+    return ReactDOMServer.renderToString(<App content={content} />);
   };
 };
