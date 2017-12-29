@@ -20,7 +20,7 @@ var Link = createReactClass({
       target = '_blank';
     }
     return (
-      <a href={this.props.href} target={target}>{this.props.children}</a>
+      <a href={this.props.href} target={target} title={this.props.title}>{this.props.children}</a>
     )
   }
 });
@@ -34,7 +34,9 @@ var Img = createReactClass({
       height: height,
     }, this.props.style);
     return (
-      <Link href={this.props.src}><img src={this.props.src} style={style} /></Link>
+      <Link href={this.props.src} title={this.props.title}>
+        <img src={this.props.src} style={style} title={this.props.title} alt={this.props.title} />
+      </Link>
     )
   }
 });
