@@ -20,7 +20,7 @@ var Link = createReactClass({
       target = '_blank';
     }
     return (
-      <a href={this.props.href} target={target} title={this.props.title}>{this.props.children}</a>
+      <a style={this.props.style} href={this.props.href} target={target} title={this.props.title}>{this.props.children}</a>
     )
   }
 });
