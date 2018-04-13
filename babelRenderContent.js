@@ -1,15 +1,5 @@
 
-var babelOptions = {
-  presets: [require('babel-preset-es2015'), require('babel-preset-react')],
-  plugins: [require('babel-plugin-transform-runtime')],
-  ignore: false,
-  babelrc: false,
-};
-require('babel-register')(babelOptions);
 var fs = require('fs');
-
-var shared = require('./static/shared');
-
 var ReactDOMServer = require('react-dom/server');
 
 // Setup function for fetchContent
@@ -38,7 +28,36 @@ var fetchContent = function(staticDir, appPath) {
   };
 };
 
-module.exports = function(staticDir, appPath) {
+module.exports = function(projectRootPath, staticDir, appPath, nodeModulesWhitelist) {
+  var babelOptions = {
+    presets: [require('babel-preset-es2015'), require('babel-preset-react')],
+    plugins: [require('babel-plugin-transform-runtime')],
+    only: function(filename) {
+      nodeModulesDir = '/node_modules/';
+      localPath = filename.substr(projectRootPath.length);
+
+      // By default, all non-node_modules paths are whitelisted to be transformed by babel
+      if (localPath.indexOf(nodeModulesDir) == -1) {
+        return true;
+      }
+
+      // Check nodeModulesWhitelist for paths that should be transformed by babel
+      nodeModulesPath = localPath.substr(nodeModulesDir.length);
+      for (w in nodeModulesWhitelist) {
+        var whitelistedPath = nodeModulesWhitelist[w] + '/';
+        if (nodeModulesPath.indexOf(whitelistedPath) == 0) {
+          return true;
+        }
+      }
+      return false;
+    },
+    babelrc: false,
+  };
+  require('babel-register')(babelOptions);
+
+  // Make sure static/shared can be transformed by babel
+  require('./static/shared');
+
   return {
     fetchContent: fetchContent(staticDir, appPath),
   };
