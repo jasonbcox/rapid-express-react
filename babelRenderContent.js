@@ -30,7 +30,7 @@ var fetchContent = function(staticDir, appPath) {
 
 module.exports = function(projectRootPath, staticDir, appPath, nodeModulesWhitelist) {
   var babelOptions = {
-    presets: [require('babel-preset-es2015'), require('babel-preset-react')],
+    presets: [require('babel-preset-env'), require('babel-preset-react')],
     plugins: [require('babel-plugin-transform-runtime')],
     only: function(filename) {
       nodeModulesDir = '/node_modules/';
